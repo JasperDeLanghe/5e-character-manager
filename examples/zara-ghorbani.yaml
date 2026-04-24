@@ -36,14 +36,9 @@ abilities:
 # ----------------------------------------------------------------
 #  COMBAT
 # ----------------------------------------------------------------
-hit_points:
-  max: 49
-  current: 49
-  temp: 0
+hit_points: 49
 
-hit_dice:
-  used: 0
-  die: "d10"
+hit_dice: "d10"
 
 armor_class: 17 # Plate armor; update if armor changes
 initiative_bonus: 1 # Typically DEX mod; override here if needed (e.g. Alert feat)

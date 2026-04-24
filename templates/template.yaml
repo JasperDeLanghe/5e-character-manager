@@ -36,14 +36,9 @@ abilities:
 # ----------------------------------------------------------------
 #  COMBAT
 # ----------------------------------------------------------------
-hit_points:
-  max: 0
-  current: 0
-  temp: 0
+hit_points: 0
 
-hit_dice:
-  used: 0
-  die: "d10" # Depends on class; used for short rest healing
+hit_dice: "d10" # Depends on class; used for short rest healing
 
 armor_class: 10
 initiative_bonus: 1 # Typically DEX mod; override here if needed (e.g. Alert feat)
