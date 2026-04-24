@@ -13,6 +13,12 @@ def get_character():
     return Character(d)
 
 
+def checkbox(val, list):
+    if val in list:
+        return "/Yes"
+    return "/No"
+
+
 def main():
     character = get_character()
     # print(character)
@@ -64,23 +70,61 @@ def main():
             "Flaws": character.data["flaws"],
             # Skills
             "Acrobatics": character.skills["acrobatics"],
+            "Check Box 23": checkbox(
+                "acrobatics", character.data["skill_proficiencies"]
+            ),
             "Animal": character.skills["animal_handling"],
+            "Check Box 24": checkbox(
+                "animal_handling", character.data["skill_proficiencies"]
+            ),
             "Arcana": character.skills["arcana"],
+            "Check Box 25": checkbox("arcana", character.data["skill_proficiencies"]),
             "Athletics": character.skills["athletics"],
+            "Check Box 26": checkbox(
+                "athletics", character.data["skill_proficiencies"]
+            ),
             "Deception ": character.skills["deception"],
+            "Check Box 27": checkbox(
+                "deception", character.data["skill_proficiencies"]
+            ),
             "History ": character.skills["history"],
+            "Check Box 28": checkbox("history", character.data["skill_proficiencies"]),
             "Insight": character.skills["insight"],
+            "Check Box 29": checkbox("insight", character.data["skill_proficiencies"]),
             "Intimidation": character.skills["intimidation"],
+            "Check Box 30": checkbox(
+                "intimidation", character.data["skill_proficiencies"]
+            ),
             "Investigation ": character.skills["investigation"],
+            "Check Box 31": checkbox(
+                "investigation", character.data["skill_proficiencies"]
+            ),
             "Medicine": character.skills["medicine"],
+            "Check Box 32": checkbox("medicine", character.data["skill_proficiencies"]),
             "Nature": character.skills["nature"],
+            "Check Box 33": checkbox("nature", character.data["skill_proficiencies"]),
             "Perception ": character.skills["perception"],
+            "Check Box 34": checkbox(
+                "perception", character.data["skill_proficiencies"]
+            ),
             "Performance": character.skills["performance"],
+            "Check Box 35": checkbox(
+                "performance", character.data["skill_proficiencies"]
+            ),
             "Persuasion": character.skills["persuasion"],
+            "Check Box 36": checkbox(
+                "persuasion", character.data["skill_proficiencies"]
+            ),
             "Religion": character.skills["religion"],
+            "Check Box 37": checkbox("religion", character.data["skill_proficiencies"]),
             "SleightofHand": character.skills["sleight_of_hand"],
+            "Check Box 38": checkbox(
+                "sleight_of_hand", character.data["skill_proficiencies"]
+            ),
             "Stealth ": character.skills["stealth"],
+            "Check Box 39": checkbox("stealth", character.data["skill_proficiencies"]),
             "Survival": character.skills["survival"],
+            "Check Box 40": checkbox("survival", character.data["skill_proficiencies"]),
             # Saving Throws
             "ST Strength": character.saving_throws["strength"],
             "ST Dexterity": character.saving_throws["dexterity"],
