@@ -1,3 +1,5 @@
+from enum import Enum
+
 PROFICIENCY_BONUS = {
     1: 2,
     2: 2,
@@ -19,4 +21,31 @@ PROFICIENCY_BONUS = {
     18: 6,
     19: 6,
     20: 6,
+}
+
+ABILITIES = {
+    "STR": "STR",
+    "DEX": "DEX",
+    "CON": "CON",
+    "INT": "INT",
+    "WIS": "WIS",
+    "CHA": "CHA",
+}
+
+
+SPELLCASTING_ABILITY_BY_CLASS = {
+    "Wizard": ABILITIES["INT"],
+    "Artificer": ABILITIES["INT"],
+    "Eldritch Knight": ABILITIES["INT"],
+    "Fighter": ABILITIES["INT"],
+    "Arcane Trickster": ABILITIES["INT"],
+    "Rogue": ABILITIES["INT"],
+    "Cleric": ABILITIES["WIS"],
+    "Druid": ABILITIES["WIS"],
+    "Ranger": ABILITIES["WIS"],
+    "Monk": ABILITIES["WIS"],
+    "Bard": ABILITIES["CHA"],
+    "Paladin": ABILITIES["CHA"],
+    "Sorcerer": ABILITIES["CHA"],
+    "Warlock": ABILITIES["CHA"],
 }

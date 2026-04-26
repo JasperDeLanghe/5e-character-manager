@@ -1,6 +1,7 @@
 import yaml
 from character import Character
 from pypdf import PdfReader, PdfWriter
+from constants import ABILITIES
 
 yaml_file = "../examples/pedro-salazar.yaml"
 fillable_sheet = "../sheet.pdf"
@@ -30,6 +31,7 @@ def main():
 
     writer.append(reader)
 
+    # page 1
     writer.update_page_form_field_values(
         writer.pages[0],
         {
@@ -47,24 +49,24 @@ def main():
             "Initiative": character.data["initiative_bonus"],
             "Speed": character.data["speed"],
             # Abilities
-            "STR": character.data["abilities"]["strength"],
-            "STRmod": character.ability_mods["strength"],
-            "DEX": character.data["abilities"]["dexterity"],
-            "DEXmod ": character.ability_mods["dexterity"],
-            "CON": character.data["abilities"]["constitution"],
-            "CONmod": character.ability_mods["constitution"],
-            "INT": character.data["abilities"]["intelligence"],
-            "INTmod": character.ability_mods["intelligence"],
-            "WIS": character.data["abilities"]["wisdom"],
-            "WISmod": character.ability_mods["wisdom"],
-            "CHA": character.data["abilities"]["charisma"],
-            "CHamod": character.ability_mods["charisma"],
+            "STR": character.data[ABILITIES["STR"]],
+            "STRmod": character.ability_mods[ABILITIES["STR"]],
+            "DEX": character.data[ABILITIES["DEX"]],
+            "DEXmod ": character.ability_mods[ABILITIES["DEX"]],
+            "CON": character.data[ABILITIES["CON"]],
+            "CONmod": character.ability_mods[ABILITIES["CON"]],
+            "INT": character.data[ABILITIES["INT"]],
+            "INTmod": character.ability_mods[ABILITIES["INT"]],
+            "WIS": character.data[ABILITIES["WIS"]],
+            "WISmod": character.ability_mods[ABILITIES["WIS"]],
+            "CHA": character.data[ABILITIES["CHA"]],
+            "CHamod": character.ability_mods[ABILITIES["CHA"]],
             "Passive": character.passive_perception,
             # HP
             "HPMax": character.data["hit_points"],
             "HDTotal": f"{character.data['level']}{character.data["hit_dice"]}",
             # RP
-            "PersonalityTraits ": character.data["personality_traits"],  # FIXME
+            "PersonalityTraits ": character.data["personality_traits"],
             "Bonds": character.data["bonds"],
             "Ideals": character.data["ideals"],
             "Flaws": character.data["flaws"],
@@ -126,24 +128,64 @@ def main():
             "Survival": character.skills["survival"],
             "Check Box 40": checkbox("survival", character.data["skill_proficiencies"]),
             # Saving Throws
-            "ST Strength": character.saving_throws["strength"],
-            "ST Dexterity": character.saving_throws["dexterity"],
-            "ST Constitution": character.saving_throws["constitution"],
-            "ST Intelligence": character.saving_throws["intelligence"],
-            "ST Wisdom": character.saving_throws["wisdom"],
-            "ST Charisma": character.saving_throws["charisma"],
-            # "Check Box 11": "/Yes",  # str saving proficiency
-            # "Check Box 18": "/Yes",  # dex saving proficiency
-            # "Check Box 19": "/Yes",  # con saving proficiency
-            # "Check Box 20": "/Yes",  # int saving proficiency
-            # "Check Box 21": "/Yes",  # wis saving proficiency
-            # "Check Box 22": "/Yes",  # cha saving proficiency
+            "ST Strength": character.saving_throws[ABILITIES["STR"]],
+            "ST Dexterity": character.saving_throws[ABILITIES["DEX"]],
+            "ST Constitution": character.saving_throws[ABILITIES["CON"]],
+            "ST Intelligence": character.saving_throws[ABILITIES["INT"]],
+            "ST Wisdom": character.saving_throws[ABILITIES["WIS"]],
+            "ST Charisma": character.saving_throws[ABILITIES["CHA"]],
+            "Check Box 11": checkbox(
+                ABILITIES["STR"], character.data["saving_throw_proficiencies"]
+            ),  # str saving proficiency
+            "Check Box 18": checkbox(
+                ABILITIES["DEX"], character.data["saving_throw_proficiencies"]
+            ),  # dex saving proficiency
+            "Check Box 19": checkbox(
+                ABILITIES["CON"], character.data["saving_throw_proficiencies"]
+            ),  # con saving proficiency
+            "Check Box 20": checkbox(
+                ABILITIES["INT"], character.data["saving_throw_proficiencies"]
+            ),  # int saving proficiency
+            "Check Box 21": checkbox(
+                ABILITIES["WIS"], character.data["saving_throw_proficiencies"]
+            ),  # wis saving proficiency
+            "Check Box 22": checkbox(
+                ABILITIES["CHA"], character.data["saving_throw_proficiencies"]
+            ),  # cha saving proficiency
             # Currencies
             "CP": character.data["currency"]["cp"],
             "SP": character.data["currency"]["sp"],
             "EP": character.data["currency"]["ep"],
             "GP": character.data["currency"]["gp"],
             "PP": character.data["currency"]["pp"],
+        },
+        auto_regenerate=False,
+    )
+
+    # page 2
+    writer.update_page_form_field_values(
+        writer.pages[1],
+        {
+            "CharacterName 2": character.data["name"],
+            "Age": character.data["appearance"]["age"],
+            "Height": character.data["appearance"]["height"],
+            "Weight": character.data["appearance"]["weight"],
+            "Eyes": character.data["appearance"]["eyes"],
+            "Skin": character.data["appearance"]["skin"],
+            "Hair": character.data["appearance"]["hair"],
+            "Backstory": character.data["backstory"],
+        },
+        auto_regenerate=False,
+    )
+
+    # page 3
+    writer.update_page_form_field_values(
+        writer.pages[2],
+        {
+            "Spellcasting Class 2": character.data["class"],
+            "SpellcastingAbility 2": character.spellcasting_ability,
+            "SpellSaveDC  2": character.spell_save_dc,
+            "SpellAtkBonus 2": character.spell_attack_bonus,
         },
         auto_regenerate=False,
     )
